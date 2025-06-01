@@ -1,0 +1,67 @@
+/* style.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 2em;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  color: #222;
+}
+
+select {
+  display: block;
+  margin: 1em auto;
+  padding: 0.5em;
+  font-size: 1em;
+}
+
+ul#cardList {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+ul#cardList li {
+  padding: 0.75em 1em;
+  background-color: #fff;
+  margin-bottom: 0.5em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+ul#cardList li:hover {
+  background-color: #ddd;
+}
+
+#cardDetails {
+  background-color: #fff;
+  max-width: 700px;
+  margin: 2em auto;
+  padding: 1.5em;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.hidden {
+  display: none;
+}
+
+#cardDetails h2 {
+  color: #444;
+  margin-bottom: 0.5em;
+}
+
+#cardSections h3 {
+  margin-top: 1em;
+  color: #666;
+}
+
+#cardSections p {
+  margin: 0.5em 0;
+  line-height: 1.5;
+}
