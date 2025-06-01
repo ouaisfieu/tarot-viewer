@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visionneuse Tarot</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Tarot de Marseille et de Boulot</h1>
+  <select id="selectSource">
+    <option value="marseille">Marseille</option>
+    <option value="boulot">Boulot</option>
+  </select>
+  <ul id="cardList"></ul>
+  <div id="cardDetails" class="hidden">
+    <h2 id="cardTitle"></h2>
+    <div id="cardSections"></div>
+  </div>
+
+  <script>
+    const repoRoot = 'https://raw.githubusercontent.com/ouaisfieu/tarot/main';
+
+    async function loadIndex(type) {
+      const res = await fetch(`${repoRoot}/${type}/index.json`);
+      const index = await res.json();
+      const list = document.getElementById('cardList');
+      list.innerHTML = '';
+      index.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item.nom || item.title;
+        li.addEventListener('click', () => loadCard(item.url));
+        list.appendChild(li);
+      });
+    }
+
+    async function loadCard(url) {
+      const res = await fetch(url);
+      const data = await res.json();
+      document.getElementById('cardTitle').textContent = data.title || data.nom;
+      const sectionDiv = document.getElementById('cardSections');
+      sectionDiv.innerHTML = '';
+      for (const key in data.sections) {
+        const sec = document.createElement('div');
+        sec.innerHTML = `<h3>${key}</h3><p>${data.sections[key]}</p>`;
+        sectionDiv.appendChild(sec);
+      }
+      document.getElementById('cardDetails').classList.remove('hidden');
+    }
+
+    document.getElementById('selectSource').addEventListener('change', (e) => {
+      loadIndex(e.target.value);
+      document.getElementById('cardDetails').classList.add('hidden');
+    });
+
+    loadIndex('marseille');
+  </script>
+</body>
+</html>
