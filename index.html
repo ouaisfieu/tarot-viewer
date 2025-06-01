@@ -29,7 +29,8 @@
       index.forEach(item => {
         const li = document.createElement('li');
         li.textContent = item.nom || item.title;
-        li.addEventListener('click', () => loadCard(item.url));
+        li.addEventListener('click', () => loadCard(`${type}/${item.file}`));
+
         list.appendChild(li);
       });
     }
