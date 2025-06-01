@@ -19,10 +19,9 @@
   </div>
 
   <script>
-    const repoRoot = '';
-
     async function loadIndex(type) {
-      const res = await fetch(`${repoRoot}/${type}/index.json`);
+      const res = await fetch(`${type}/index.json`);
+
       const index = await res.json();
       const list = document.getElementById('cardList');
       list.innerHTML = '';
